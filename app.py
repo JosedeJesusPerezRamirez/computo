@@ -4,13 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Configuración de la base de datos PostgreSQL
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://jesus_user:GVKipvKXigAHYiqBcGtSngMu4EBjPqqn@dpg-crgvue68ii6s73c0c2jg-a/jesus'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://jesus_user:GVKipvKXigAHYiqBcGtSngMu4EBjPqqn@dpg-crgvue68ii6s73c0c2jg-a.oregon-postgres.render.com:5432/jesus'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 # Definición del modelo de la tabla 'estudiantes'
-class alumnos(db.Model):
+class Estudiante(db.Model):
     __tablename__ = 'alumnos'
     no_control = db.Column(db.String, primary_key=True)
     nombre = db.Column(db.String, nullable=True)
@@ -19,7 +19,7 @@ class alumnos(db.Model):
     semestre = db.Column(db.Integer, nullable=True)
 
 # Endpoint para obtener todos los estudiantes
-@app.route('/alumnos', methods=['GET'])
+@app.route('/estudiantes', methods=['GET'])
 def obtener_estudiantes():
     estudiantes = Estudiante.query.all()
     lista_estudiantes = []
